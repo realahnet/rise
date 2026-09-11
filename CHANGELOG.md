@@ -2,6 +2,24 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.43.2 (fork)
+
+Fork release of v0.43.1 fixing the chalkboard feature of the standalone
+presenter:
+
+- Ship the chalkboard plugin images with the wheel - fixes the 404s on
+  `/static/rise/img/*` that left the board background transparent, broke the
+  cursors and made drawings invisible (see [#70](https://github.com/jupyterlab-contrib/rise/issues/70))
+- Pin `reveal.js-plugins` to
+  [realahnet/reveal.js-plugins@bf75546](https://github.com/realahnet/reveal.js-plugins/commit/bf75546d2282add16c9cfa89e57a52f147ff32b5)
+  which fixes the chalkboard for decks with percentage dimensions
+  (`width: "100%"`): a NaN scale silently dropped every stroke after any
+  window resize / fullscreen toggle (see
+  [reveal.js-plugins#109](https://github.com/rajgoel/reveal.js-plugins/issues/109))
+
+The changes in this release were made with the assistance of
+GLM 5.3 (Z.ai) via OpenCode.
+
 ## 0.43.1
 
 ([Full Changelog](https://github.com/jupyterlab-contrib/rise/compare/jupyterlab-rise@0.42.0...7d188738160e2de8818f67c189bb7bdc4f6d6d05))
