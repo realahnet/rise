@@ -20,6 +20,10 @@
 - Show the RISE buttons (exit cross, help question mark, chalkboard toggles) on
   startup by default instead of hiding them, matching the classic RISE
   behaviour.
+- Serve the standalone presenter assets under content-hashed URLs: browsers
+  now pick up every new build automatically instead of serving stale chunks
+  from the immutable cache (a hard reload was not even sufficient, since
+  lazily imported chunks are fetched after the page load).
 
 The changes in this release were made with the assistance of
 GLM 5.3 (Z.ai) via OpenCode.
