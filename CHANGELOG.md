@@ -10,10 +10,13 @@
   while the feature is broken (see [#70](https://github.com/jupyterlab-contrib/rise/issues/70)).
   Explicit opt-outs (user setting or notebook metadata
   `"rise": {"enable_chalkboard": false}`) are still honored.
-- Restore the classic RISE exit button: a cross at the top right corner of the
+- Restore the classic RISE exit button: a cross at the top left corner of the
   presentation. In the standalone presenter it opens the current notebook in
   the editor; embedded in JupyterLab it toggles the RISE preview off. The
   button participates in the `,` show/hide-buttons toggle.
+- Keep the help and exit buttons visible in fullscreen: they are now part of
+  the reveal element, so the browser renders them when the presentation is
+  fullscreened (previously they were siblings of it and disappeared).
 - Show the RISE buttons (exit cross, help question mark, chalkboard toggles) on
   startup by default instead of hiding them, matching the classic RISE
   behaviour.

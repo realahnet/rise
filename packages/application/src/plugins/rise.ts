@@ -1240,7 +1240,7 @@ namespace Rise {
       displayRiseHelp(commands, trans);
     });
 
-    panel.node.insertAdjacentElement('afterend', helpButton);
+    panel.node.appendChild(helpButton);
   }
 
   function addExitButton(
@@ -1257,18 +1257,28 @@ namespace Rise {
     exitButton.classList.add('fa-times', 'fa-4x', 'fa');
 
     exitButton.addEventListener('click', async () => {
-      const baseUrl = PageConfig.getBaseUrl();
-      if (window.location.pathname.startsWith(baseUrl + 'rise/')) {
+      // Normalize the base URL: PageConfig may return a relative ("/") or an
+      // absolute ("http://host:port/") base URL depending on the deployment.
+      const base = new URL(PageConfig.getBaseUrl(), window.location.href);
+      const risePrefix = new URL('rise/', base).pathname;
+      if (new URL(window.location.href).pathname.startsWith(risePrefix)) {
         // Standalone RISE presenter: open the notebook in the editor
-        window.location.href =
-          baseUrl + 'notebooks/' + encodeURI(panel.context.path);
+        const target = new URL('notebooks/' + panel.context.path, base);
+        window.location.href = target.href;
       } else {
         // Embedded in JupyterLab: toggle the RISE preview off
-        await commands.execute('RISE:preview');
+        try {
+          await commands.execute('RISE:preview');
+        } catch (reason) {
+          console.warn('RISE: could not exit the presentation', reason);
+        }
       }
     });
 
-    panel.node.insertAdjacentElement('afterend', exitButton);
+    // Append inside the reveal element (panel.node) so the button stays
+    // visible when the presentation goes fullscreen: the browser only
+    // renders descendants of the fullscreened element.
+    panel.node.appendChild(exitButton);
   }
 
   const reveal_helpstr: { [id: string]: string } = {};
