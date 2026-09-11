@@ -35,6 +35,21 @@ const cssImports = path.resolve(__dirname, 'style.js');
 fs.copySync(index, path.resolve(buildDir, 'index.js'));
 fs.copySync(cssImports, path.resolve(buildDir, 'extraStyle.js'));
 
+// Copy the chalkboard plugin images (chalk/boardmarker cursors, board
+// backgrounds, sponge) into the served static directory. The chalkboard
+// plugin computes the URLs of its assets relative to its own script
+// location (see `scriptPath()` in the plugin), which for this federated
+// build is `jupyterlab_rise/static` - so the images must be shipped next
+// to `bundle.js` and the webpack chunks.
+const chalkboardImgDir = path.join(
+  path.dirname(require.resolve('reveal.js-plugins/chalkboard/plugin.js')),
+  'img'
+);
+fs.copySync(
+  chalkboardImgDir,
+  path.resolve(__dirname, '..', 'jupyterlab_rise', 'static', 'img')
+);
+
 const extras = Build.ensureAssets({
   packageNames: names,
   output: buildDir,
