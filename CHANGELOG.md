@@ -4,26 +4,14 @@
 
 ## 0.43.3 (fork)
 
-- Enable the chalkboard by default: the feature now works out of the box in
-  this fork (shipped images + percentage-dimensions fix), so no per-notebook
-  metadata or user settings are needed to opt in. Upstream keeps it opt-in
-  while the feature is broken (see [#70](https://github.com/jupyterlab-contrib/rise/issues/70)).
-  Explicit opt-outs (user setting or notebook metadata
-  `"rise": {"enable_chalkboard": false}`) are still honored.
-- Restore the classic RISE exit button: a cross at the top left corner of the
-  presentation. In the standalone presenter it opens the current notebook in
-  the editor; embedded in JupyterLab it toggles the RISE preview off. The
-  button participates in the `,` show/hide-buttons toggle.
-- Keep the help and exit buttons visible in fullscreen: they are now part of
-  the reveal element, so the browser renders them when the presentation is
-  fullscreened (previously they were siblings of it and disappeared).
-- Show the RISE buttons (exit cross, help question mark, chalkboard toggles) on
-  startup by default instead of hiding them, matching the classic RISE
-  behaviour.
-- Serve the standalone presenter assets under content-hashed URLs: browsers
-  now pick up every new build automatically instead of serving stale chunks
-  from the immutable cache (a hard reload was not even sufficient, since
-  lazily imported chunks are fetched after the page load).
+- Enable the chalkboard by default; explicit opt-outs (user setting or notebook
+  metadata) are still honored
+- Restore the classic exit button at the top left corner: it leaves the
+  presentation from the standalone presenter and toggles the preview off in
+  JupyterLab; it stays visible in fullscreen
+- Show the exit, help and chalkboard buttons on startup, sized relative to the
+  viewport
+- Content-hash the static asset URLs
 
 The changes in this release were made with the assistance of
 GLM 5.3 (Z.ai) via OpenCode.

@@ -387,16 +387,21 @@
   cursor: pointer;
 }
 
+.rise-enabled #help-b,
+.rise-enabled #exit-b {
+  /* purely viewport-proportional: matches the default fa-4x question mark
+     size (~52px on a 1280px-wide screen) while scaling with any display */
+  font-size: 4vw;
+}
+
 .rise-enabled #help-b {
   left: 0.6em;
   bottom: 0.55em;
 }
 
 .rise-enabled #exit-b {
-  /* px, not em: reveal scales the font-size of the reveal element, which
-     would push an em-based offset away from the corner */
-  left: 24px;
-  top: 20px;
+  left: 1.8vw;
+  top: 1.5vw;
 }
 
 .rise-enabled .chalkboard-button i {

@@ -1234,7 +1234,7 @@ namespace Rise {
     const helpButton = document.createElement('i');
     helpButton.setAttribute('id', 'help-b');
     helpButton.setAttribute('title', trans.__('Reveal Shortcuts Help'));
-    helpButton.classList.add('fa-question', 'fa-4x', 'fa');
+    helpButton.classList.add('fa-question', 'fa');
 
     helpButton.addEventListener('click', () => {
       displayRiseHelp(commands, trans);
@@ -1254,7 +1254,7 @@ namespace Rise {
       'title',
       trans.__('Exit the presentation and return to the notebook')
     );
-    exitButton.classList.add('fa-times', 'fa-4x', 'fa');
+    exitButton.classList.add('fa-times', 'fa');
 
     exitButton.addEventListener('click', async () => {
       // Normalize the base URL: PageConfig may return a relative ("/") or an
