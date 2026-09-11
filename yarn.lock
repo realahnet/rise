@@ -10321,7 +10321,7 @@ __metadata:
     npm-run-all: ^4.1.5
     prettier: ^3.0.0
     reveal.js: ^4.4.0
-    reveal.js-plugins: ^4.1.5
+    reveal.js-plugins: "realahnet/reveal.js-plugins#bf75546d2282add16c9cfa89e57a52f147ff32b5"
     rimraf: ^5.0.0
     typescript: ~5.1.6
   languageName: unknown
@@ -14869,12 +14869,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reveal.js-plugins@npm:^4.1.5":
+"reveal.js-plugins@realahnet/reveal.js-plugins#bf75546d2282add16c9cfa89e57a52f147ff32b5":
   version: 4.1.5
-  resolution: "reveal.js-plugins@npm:4.1.5"
+  resolution: "reveal.js-plugins@https://github.com/realahnet/reveal.js-plugins.git#commit=bf75546d2282add16c9cfa89e57a52f147ff32b5"
   dependencies:
-    npm: "npm:^6.13.4"
-  checksum: ee5eb357e05c402abb323dc0fb925a907a7cb99f9cb0e4282a570b0375e69907c5704143a853599f5ba2d898a10927852d6789ccab54aae50c70d5ea210e1b21
+    npm: ^6.13.4
+  checksum: 6568fc048d19ec56308c2cc4a68a7f0ebec9fdfbf783d66edd262d64b24184790f11ed57e25eb87237b2c76ed458d631c71e83d0ec191acdbdb468664d614eec
   languageName: node
   linkType: hard
 
