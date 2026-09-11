@@ -856,7 +856,12 @@ namespace Rise {
   }
 
   function toggleAllRiseButtons() {
-    for (const selector of ['#help-b', '#toggle-chalkboard', '#toggle-notes']) {
+    for (const selector of [
+      '#exit-b',
+      '#help-b',
+      '#toggle-chalkboard',
+      '#toggle-notes'
+    ]) {
       const element = document.querySelector(selector) as HTMLElement | null;
       if (element) {
         element.style.visibility =
@@ -1127,6 +1132,7 @@ namespace Rise {
     Revealer(panel, selected_slide);
     // Minor modifications for usability
     addHelpButton(panel, commands, trans);
+    addExitButton(panel, commands, trans);
   }
 
   async function displayRiseHelp(
@@ -1235,6 +1241,34 @@ namespace Rise {
     });
 
     panel.node.insertAdjacentElement('afterend', helpButton);
+  }
+
+  function addExitButton(
+    panel: NotebookPanel,
+    commands: CommandRegistry,
+    trans: TranslationBundle
+  ): void {
+    const exitButton = document.createElement('i');
+    exitButton.setAttribute('id', 'exit-b');
+    exitButton.setAttribute(
+      'title',
+      trans.__('Exit the presentation and return to the notebook')
+    );
+    exitButton.classList.add('fa-times', 'fa-4x', 'fa');
+
+    exitButton.addEventListener('click', async () => {
+      const baseUrl = PageConfig.getBaseUrl();
+      if (window.location.pathname.startsWith(baseUrl + 'rise/')) {
+        // Standalone RISE presenter: open the notebook in the editor
+        window.location.href =
+          baseUrl + 'notebooks/' + encodeURI(panel.context.path);
+      } else {
+        // Embedded in JupyterLab: toggle the RISE preview off
+        await commands.execute('RISE:preview');
+      }
+    });
+
+    panel.node.insertAdjacentElement('afterend', exitButton);
   }
 
   const reveal_helpstr: { [id: string]: string } = {};

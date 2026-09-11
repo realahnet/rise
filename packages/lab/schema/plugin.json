@@ -150,7 +150,7 @@
       "title": "",
       "description": "",
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "header": {
       "title": "HTML Header",

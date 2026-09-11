@@ -379,6 +379,7 @@
 }
 
 .rise-enabled #help-b,
+.rise-enabled #exit-b,
 .rise-enabled .chalkboard-button {
   color: #727272;
   position: fixed !important;
@@ -389,6 +390,11 @@
 .rise-enabled #help-b {
   left: 0.6em;
   bottom: 0.55em;
+}
+
+.rise-enabled #exit-b {
+  right: 0.6em;
+  top: 0.55em;
 }
 
 .rise-enabled .chalkboard-button i {
