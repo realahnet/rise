@@ -1,3 +1,4 @@
+import json
 import os
 from os.path import join as pjoin
 from pathlib import Path
@@ -39,6 +40,20 @@ class RiseHandler(ExtensionHandlerJinjaMixin, ExtensionHandlerMixin, JupyterHand
             "frontendUrl": ujoin(self.base_url, "rise/"),
             "notebookPath": notebook_path,
         }
+
+        # Content-hashed entry bundle (falls back to the plain name when no
+        # manifest is available, e.g. in editable/dev builds). The assets are
+        # served with immutable caching, so builds must use content-hashed
+        # URLs for browsers to pick up new versions.
+        bundle = "bundle.js"
+        try:
+            with open(pjoin(HERE, "static", "manifest.json")) as f:
+                bundle = json.load(f).get("bundle.js", bundle)
+        except (OSError, ValueError):
+            pass
+        page_config["fullBundleUrl"] = ujoin(
+            self.base_url, "static", self.name, bundle
+        )
 
         mathjax_config = self.settings.get("mathjax_config", "TeX-AMS_HTML-full,Safe")
         # TODO Remove CDN usage.

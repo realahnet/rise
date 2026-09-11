@@ -15,6 +15,29 @@ const BundleAnalyzerPlugin =
 const Build = require('@jupyterlab/builder').Build;
 const baseConfig = require('@jupyterlab/builder/lib/webpack.config.base');
 
+const { RawSource } = webpack.sources;
+
+// Emit a manifest mapping the unhashed entry name to its content-hashed
+// filename, so the server template can reference it. Cache busting: the
+// static assets are served with `Cache-Control: immutable`, so a new build
+// must produce new URLs - otherwise browsers keep serving stale chunks from
+// cache and users never see updates.
+class RiseManifestPlugin {
+  apply(compiler) {
+    compiler.hooks.emit.tap('RiseManifestPlugin', compilation => {
+      const manifest = {};
+      for (const file of Object.keys(compilation.assets)) {
+        if (/^bundle\.[0-9a-f]+\.js$/.test(file)) {
+          manifest['bundle.js'] = file;
+        }
+      }
+      compilation.assets['manifest.json'] = new RawSource(
+        JSON.stringify(manifest, null, 2)
+      );
+    });
+  }
+}
+
 const data = require('./package.json');
 
 const names = Object.keys(data.dependencies).filter(name => {
@@ -192,11 +215,13 @@ module.exports = [
         type: 'var',
         name: ['_JUPYTERLAB', 'CORE_OUTPUT']
       },
-      filename: 'bundle.js',
+      filename: 'bundle.[contenthash:8].js',
+      chunkFilename: '[id].[contenthash:8].bundle.js',
       sourceMapFilename: '[name].js.map'
     },
     devtool: 'source-map',
     plugins: [
+      new RiseManifestPlugin(),
       new ModuleFederationPlugin({
         library: {
           type: 'var',
