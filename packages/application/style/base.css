@@ -393,8 +393,10 @@
 }
 
 .rise-enabled #exit-b {
-  left: 0.6em;
-  top: 0.55em;
+  /* px, not em: reveal scales the font-size of the reveal element, which
+     would push an em-based offset away from the corner */
+  left: 24px;
+  top: 20px;
 }
 
 .rise-enabled .chalkboard-button i {
