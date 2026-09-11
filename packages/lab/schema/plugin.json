@@ -132,7 +132,7 @@
       "title": "Whether to activate chalkboard",
       "description": "if set, turn on the chalkboard plugin to reveal.\nWhen enabled, this plugin adds two buttons next to the help button. It also reacts to the following additional keyboard commands:\n`[` to turn the whole space into an empty chalkboard;\n`]` to start adding free drawings to the current slide;\n\\ to download chalkboard drawing;\n`=` to reset chalkboard drawing on the current slide;\n`-` to clear the chalkboard.\nYou can define alternative short cuts. Note, that some keys might not work in some browsers.",
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "start_slideshow_at": {
       "title": "Where to start the slideshow",
