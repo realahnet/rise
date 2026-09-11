@@ -1,6 +1,6 @@
 {
     "name": "jupyterlab-rise-meta",
-    "version": "0.43.2",
+    "version": "0.43.3",
     "description": "RISE: \"Live\" Reveal.js JupyterLab Slideshow extension.",
     "keywords": [
         "jupyter",

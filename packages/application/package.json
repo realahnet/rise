@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-rise-application",
-  "version": "0.43.2",
+  "version": "0.43.3",
   "description": "Rise Application based on JupyterLab modules.",
   "private": true,
   "keywords": [

@@ -2,6 +2,18 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.43.3 (fork)
+
+- Enable the chalkboard by default: the feature now works out of the box in
+  this fork (shipped images + percentage-dimensions fix), so no per-notebook
+  metadata or user settings are needed to opt in. Upstream keeps it opt-in
+  while the feature is broken (see [#70](https://github.com/jupyterlab-contrib/rise/issues/70)).
+  Explicit opt-outs (user setting or notebook metadata
+  `"rise": {"enable_chalkboard": false}`) are still honored.
+
+The changes in this release were made with the assistance of
+GLM 5.3 (Z.ai) via OpenCode.
+
 ## 0.43.2 (fork)
 
 Fork release of v0.43.1 fixing the chalkboard feature of the standalone
